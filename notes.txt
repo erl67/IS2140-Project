@@ -1,0 +1,66 @@
+Install Docker for Windows
+
+Run docker pull solr
+
+Create core:
+solr create -c new_core
+
+Copy Data:
+Use whatever path you have data in, and what the machine name is on your computer
+PS C:\Users\x5769\Documents\GitHub\IS2160-Project\data> docker cp C:/Users/x5769/Documents/GitHub/IS2160-Project/data/ 564ae6af4340:/var/solr/data/new_core2/
+
+mv * /var/solr/data/collection1/data/
+
+
+
+
+Docker:
+	Makes it easy to run Solr in a container, don’t have to worry about installing it on your machine.
+Instructions:
+Install Docker for Windows (or Mac)
+Run command on docker (docker pull solr)
+https://hub.docker.com/_/solr
+Start the docker container, make sure you put in port number usually 8983
+Create core in docker terminal (solr create -c collection1)
+
+Copy data files to container
+https://hub.docker.com/_/solr
+Use whatever path you have data in, and what the machine name is on your computer
+PS C:\Users\x5769\Documents\GitHub\IS2160-Project\data> docker cp C:/Users/x5769/Documents/GitHub/IS2160-Project/data/ 564ae6af4340:/var/solr/data/new_core2/
+View the Solr instance at: http://localhost:8983/solr/#/collection1 
+Build the index? 
+solr@564ae6af4340:/var/solr/data/new_core2$ post -c collection1 data/*
+
+
+
+I’m still having an issue getting Solr to read the files. It cycles through all the files and gives the same message for each one.
+I’m not sure if it’s because they are PDFs or if epub would work better.
+This is the error message: 
+
+
+Not sure if it’s an issue with the schema or the PDF.
+Trying to go through the Solr tutorials here: 
+https://solr.apache.org/guide/solr/latest/getting-started/tutorial-diy.html
+
+
+Mass Downloader Extension for downloading all the files quickly: https://chrome.google.com/webstore/detail/simple-mass-downloader/abdkkegmcbiomijcbdaodaflgehfffed/related?hl=en-US
+Instructions: https://gelprec.github.io/quick_start_v2.html
+
+PS C:\users\x5769\Downloads> docker cp C:/Users/x5769/Downloads/data2/ 564ae6af4340:/var/solr/data/demo2/
+
+curl.exe "http://localhost:8983/solr/demo0/update/extract?literal.id=doc1&defaultField=text&commit=true" --data-binary Conscience.epub -H 'Content-type:application/epub'
+
+PS C:\users\x5769\Downloads\data2> curl.exe "http://localhost:8983/solr/demo0/update" -H 'Content-type:application/epub+zip' --data-binary Marrow.epub
+{
+  "responseHeader":{
+    "status":415,
+    "QTime":1},
+  "error":{
+    "metadata":[
+      "error-class","org.apache.solr.common.SolrException",
+      "root-error-class","org.apache.solr.common.SolrException"],
+    "msg":"Unsupported ContentType: application/epub+zip  Not in: [application/xml, application/csv, application/json, text/json, text/csv, text/xml, application/javabin]",
+    "Code":415}}
+
+Enable CORS: https://anset.org/2016/09/24/apache-solr-enable-cors/
+docker cp C:/Users/x5769/Downloads/web.xml 564ae6af4340:/opt/solr-9.0.0/server/solr-webapp/webapp/WEB-INF
