@@ -12,13 +12,11 @@ def get_args(argv):
     parser.add_argument('-u', '--url', required=True, default="Unavailable", type=str)
     return parser.parse_args()
 
-
 def isStopword(word):
     global stopwords
     if word in stopwords or len(word) <= 2:
         return True
     return False
-
 
 def convert_file(f, t, a, u):
     dictionary = {
@@ -36,21 +34,16 @@ def convert_file(f, t, a, u):
 
     while temp := file.readline():
         temp = temp.strip()
-        # print(f"{temp=}")
         if temp == '':
             continue
 
-        #remove punctuation
+        #remove punctuation and stopwords
         words = re.sub(puncRE, "", temp).split(" ")
-        # print(f"{words=}")
-
         for word in words:
-            # print(f"{word=}")
             if not isStopword(word):
                 tempContent.append(word)
-
     file.close()
-    # print(f"{tempContent=}")
+
     content = ' '.join(tempContent)
     print(f"{content=}")
 
@@ -60,7 +53,6 @@ def convert_file(f, t, a, u):
     with open("./json/" + a + "_" + t + ".json", "w") as file:
         file.write(json_object)
 
-
 def main(argv):
     args = get_args(argv)
     with open("./stopword.txt", 'r', encoding="ANSI") as file:
@@ -69,7 +61,6 @@ def main(argv):
         print("Command line arguments must be supplied\n")
     else:
         convert_file(args.file, args.title, args.author, args.url)
-
  
 if __name__ == "__main__":
     main(sys.argv[1:])
