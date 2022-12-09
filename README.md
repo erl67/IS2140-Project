@@ -1,7 +1,8 @@
 # IS2140-Project
 
-https://informationretrievalproject.glitch.me/ 
+http://puritanlibrarysearch.glitch.me/ 
 
+https://docs.google.com/presentation/d/1ZhgOJnxITOuy3lhMDFVRckh9pxYRVo9inmjEhxoFZL8/
 
 # Query String
 
