@@ -2,6 +2,6 @@
 
 ### Puritan Library Search
 
-http://puritanlibrarysearch.glitch.me/ 
+[Search Engine Site](http://puritanlibrarysearch.glitch.me/) 
 
-https://docs.google.com/presentation/d/1ZhgOJnxITOuy3lhMDFVRckh9pxYRVo9inmjEhxoFZL8/edit?usp=sharing
+[Presentation Slides](https://docs.google.com/presentation/d/1ZhgOJnxITOuy3lhMDFVRckh9pxYRVo9inmjEhxoFZL8/edit?usp=sharing)
